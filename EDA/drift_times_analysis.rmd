@@ -1,0 +1,42 @@
+---
+title: "Dwell Time Analysis"
+author: "redminers"
+date: "November 15, 2015"
+output: html_document
+---
+
+This R Analysis, loads the data directly from the tables at MySQL server hosted at UITS, IU.
+
+Creating an connection, Lets check the average dwell time per stop across all routes,
+```{R}
+library(RMySQL)
+library(ggplot2)
+mydb = dbConnect(MySQL(), user='bususer', password='Password123', dbname='iubus', host='rdc04.uits.iu.edu',port=3099)
+rs = dbSendQuery(mydb, "select from_stp,avg(dwell_time) 'dwell_time' from route_run_temp where dwell_time <> 0 group by from_stp order by dwell_time")
+data = fetch(rs, n=-1)
+ggplot(data,aes(x=from_stp,y=dwell_time,color=from_stp,fill=from_stp))+stat_summary(fun.y="mean",geom="bar")+theme(axis.text.x = element_text(angle = 90, hjust = 1),legend.position="none")
+
+```
+
+It can be seen that except the Stadiums, all other stops have about nearly same dwell time except few 'popular' stops.
+
+Lets dig in a little Deep, lets see dwell time across routes,
+```{r}
+rs = dbSendQuery(mydb, "select from_stp,avg(dwell_time) 'dwell_time',route_id from route_run_temp where dwell_time <> 0 group by from_stp,route_id order by route_id")
+data = fetch(rs, n=-1)
+ggplot(data,aes(x=from_stp,y=dwell_time,color=from_stp,fill=from_stp))+ylim(0,100)+facet_grid(route_id~.)+stat_summary(fun.y="mean",geom="bar")+theme(axis.text.x = element_text(angle = 90, hjust = 1),legend.position="none")
+```
+
+Here the stadium stops are omitted. This graph gives different insight.
+It can be seen that the popular stops like IMU spikes up in all routes.
+
+Now lets see the Travel time between the stops for different routes,
+Assuming the directionality is specified as column titles.
+
+```{r, echo=FALSE}
+rs = dbSendQuery(mydb, "select from_stp,to_stp,avg(travel_time) 'travel_time',route_id from route_run_temp where travel_time <> 0 group by from_stp,route_id order by route_id")
+data = fetch(rs, n=-1)
+print(data)
+```
+
+First impression is that there are few junk values. There are stops which have high travelling time like 7 days, which is not possible. There are few acceptable valid values like IMU and Informatics takes about 2 minutes, which is true in real case also.
