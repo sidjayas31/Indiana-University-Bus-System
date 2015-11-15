@@ -1,0 +1,1 @@
+match (a:Stops {name:'IMU'}),(b:Stops {name:'Foster'}),p = shortestPath((a)-[*]-(b)) return p;
