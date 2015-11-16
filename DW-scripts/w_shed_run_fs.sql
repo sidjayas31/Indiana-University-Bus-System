@@ -44,3 +44,8 @@ select distinct(to_id) from intervaldata_tsv;
 select count(*) from W_SHED_RUN_FS;
 select * from W_SHED_RUN_FS;
 drop table W_SHED_RUN_FS;
+
+select from_name,avg(dwell_time) 'avg_time',hour(timestmp) 'hour_time' from W_SHED_RUN_FS where travel_flg='N' group by from_name,hour_time order by hour_time;
+select route_name,from_name,to_name,concat(from_name,concat('~',to_name)) 'fromtostops',avg(travel_time) 'avg_time',hour(timestmp) 'hour_time' from W_SHED_RUN_FS where travel_flg='Y' group by route_name,fromtostops,hour_time order by route_name,hour_time;
+select route_name,from_name,to_name,concat(from_name,concat('~',to_name)) 'fromtostops',avg(travel_time) 'avg_time',hour(timestmp) 'hour_time' from W_SHED_RUN_FS where travel_flg='Y' and hour(timestmp)=1 group by route_name,fromtostops,hour_time order by route_name,hour_time;
+select * from W_SHED_RUN_FS;
