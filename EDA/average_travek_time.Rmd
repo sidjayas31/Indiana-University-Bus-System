@@ -1,0 +1,25 @@
+---
+title: "Average Travel Time per Hour by Route"
+author: "redminers"
+date: "November 15, 2015"
+output: html_document
+---
+
+```{r,out.width = '1080px',out.height = '720px', dpi=200}
+library(RMySQL)
+library(ggplot2)
+mydb = dbConnect(MySQL(), user='bususer', password='Password123', dbname='iubus', host='rdc04.uits.iu.edu',port=3099)
+rs = dbSendQuery(mydb, "select route_name,from_name,to_name,concat(from_name,concat('~',to_name)) 'fromtostops',avg(travel_time) 'avg_time',hour(timestmp) 'hour_time' from W_SHED_RUN_FS where travel_flg='Y' group by route_name,fromtostops,hour_time order by route_name,hour_time;")
+data = fetch(rs, n=-1)
+dbDisconnect(mydb)
+data$hour_time<-as.factor(data$hour_time)
+lvl<-levels(data$hour_time)
+for(i in lvl){
+  tmpDs<-data[which(data$hour_time==i),]
+  routes<-levels(as.factor(tmpDs$route_name))
+  for (j in routes){
+    tmpDs<-data[which(data$hour_time==i & data$route_name==j),]
+    gg.plot<-ggplot(tmpDs,aes(x=fromtostops,y=avg_time,color=fromtostops,fill=fromtostops))+stat_summary(fun.y="mean",geom="bar")+theme(axis.text.x = element_text(angle = 90, hjust = 1),legend.position="none") + ggtitle(paste("Travel Time Patterns for the route ",j," at ",i,"th Hour of the Day"))+xlab("Stop sequence")+ylab("Average Travel Time")
+    print(gg.plot)
+  }}
+```

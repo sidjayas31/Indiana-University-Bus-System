@@ -1,0 +1,23 @@
+---
+title: "Drift Time by Hour"
+author: "redminers"
+date: "November 15, 2015"
+output: html_document
+---
+
+```{r,out.width = '1080px',out.height = '720px', dpi=200}
+library(RMySQL)
+library(ggplot2)
+mydb = dbConnect(MySQL(), user='bususer', password='Password123', dbname='iubus', host='rdc04.uits.iu.edu',port=3099)
+rs = dbSendQuery(mydb, "select from_name,avg(dwell_time) 'avg_time',hour(timestmp) 'hour_time' from W_SHED_RUN_FS where travel_flg='N' group by from_name,hour_time order by hour_time;")
+data = fetch(rs, n=-1)
+dbDisconnect(mydb)
+data$hour_time<-as.factor(data$hour_time)
+data$avg_time[data$avg_time>150]<-150
+lvl<-levels(data$hour_time)
+for(i in lvl){
+  tmpDs<-data[which(data$hour_time==i),]
+  gg.plot<-ggplot(tmpDs,aes(x=from_name,y=avg_time,color=from_name,fill=from_name))+stat_summary(fun.y="mean",geom="bar")+theme(axis.text.x = element_text(angle = 90, hjust = 1),legend.position="none") + ggtitle(paste("Drift Time Patterns for the ",i,"th Hour of the Day"))+xlab("Stop Name")+ylab("Average Drift Time")
+  print(gg.plot)
+}
+```
