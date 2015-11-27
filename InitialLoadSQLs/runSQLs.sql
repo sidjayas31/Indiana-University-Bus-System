@@ -1,5 +1,5 @@
 CREATE TABLE SPRING_RUNS_TEMP 
-SELECT ival.*,wk.* 
+SELECT ival.*,wk.*  
 FROM (	SELECT i.from_id, to_id,time_id, bus_id,r.`Route ID`, when_time 
 		FROM DBMAP_IntervalData i , DBMAP_RouteID r 
 		WHERE i.route_id=FLOOR(r.Index) 
