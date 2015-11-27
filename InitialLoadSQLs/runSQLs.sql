@@ -1,3 +1,4 @@
+CREATE TABLE SPRING_RUNS_TEMP 
 SELECT ival.*,wk.* 
 FROM (	SELECT i.from_id, to_id,time_id, bus_id,r.`Route ID`, when_time 
 		FROM DBMAP_IntervalData i , DBMAP_RouteID r 
@@ -29,10 +30,17 @@ FROM (	SELECT i.from_id, to_id,time_id, bus_id,r.`Route ID`, when_time
 									'4:00:00')) 
 		);
 
-select * from (select * from SPRING_RUNS_TEMP where Route like '_-A_.%'order by `Date`, Route,bus_id, `when_Time`)a UNION
-select * from (select * from SPRING_RUNS_TEMP where Route like '_-B_.%'order by `Date`, Route,bus_id, `when_Time`)b UNION
-select * from (select * from SPRING_RUNS_TEMP where Route like '_-E_.%'order by `Date`, Route,bus_id, `when_Time`)c UNION
-select * from (select * from SPRING_RUNS_TEMP where Route like '_-X_.%'order by `Date`, Route,bus_id, `when_Time`)d;
+CREATE TABLE S_SPRING_RUNS
+select Route, `Date`, TripID, from_id,to_id, when_time, stop_order,bus_id from (select *,@row_num := IF(`to_id` = 39 and `from_id` =39 ,@row_num+1,@row_num) TripID, IF(`to_id` = 39  and `from_id` =39 ,@stop_order:=0,@stop_order:=@stop_order +1) stop_order  from SPRING_RUNS_TEMP JOIN ( SELECT @row_num :=0)r JOIN (SELECT @stop_order:=0)s where Route like '_-A_.%'order by `Date`, Route,bus_id, `when_Time`)a UNION
+select Route, `Date`, TripID, from_id,to_id, when_time, stop_order,bus_id from (select *,@row_num := IF(`to_id` = 25 and `from_id` =25 ,@row_num+1,@row_num) TripID, IF(`to_id` = 25  and `from_id` =25 ,@stop_order:=0,@stop_order:=@stop_order +1) stop_order  from SPRING_RUNS_TEMP JOIN ( SELECT @row_num :=0)r JOIN (SELECT @stop_order:=0)s where Route like '_-B_.%'order by `Date`, Route,bus_id, `when_Time`)b UNION
+select Route, `Date`, TripID, from_id,to_id, when_time, stop_order,bus_id from (select *,@row_num := IF(`to_id` = 48 and `from_id` =48 ,@row_num+1,@row_num) TripID, IF(`to_id` = 48  and `from_id` =48 ,@stop_order:=0,@stop_order:=@stop_order +1) stop_order   from SPRING_RUNS_TEMP JOIN ( SELECT @row_num :=0)r JOIN (SELECT @stop_order:=0)s where Route like '_-E_.%'order by `Date`, Route,bus_id, `when_Time`)c UNION
+select Route, `Date`, TripID, from_id,to_id, when_time, stop_order,bus_id from (select *,@row_num := IF(`to_id` = 68 and `from_id` =68 ,@row_num+1,@row_num) TripID, IF(`to_id` = 68  and `from_id` =68 ,@stop_order:=0,@stop_order:=@stop_order +1) stop_order   from SPRING_RUNS_TEMP JOIN ( SELECT @row_num :=0)r JOIN (SELECT @stop_order:=0)s where Route like '_-X_.%'order by `Date`, Route,bus_id, `when_Time`)d;
+
+
+
+
+
+
 
 select str_to_date(subtime(date_format(now(),'%h:%i:%S %p'),'2:00:00'),'%h:%i:%S');
 
