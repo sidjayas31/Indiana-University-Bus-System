@@ -1,0 +1,17 @@
+setwd("C:\\Users\\Ganesh\\Google Drive\\Courses\\CSCI B 565\\Bus Project\\nefarious-octo-rutabaga\\R Models\\Data")
+library(nnet)
+routea<-read.csv("DATA.csv")
+stop1.fit<-multinom(Stop.1.Status~Day+Hr.Day,data=routea)
+stop1.prob<-data.frame(Day=c("M"),Hr.Day=10)
+predict(stop1.fit,newdata = stop1.prob,"probs")
+stop2.fit<-multinom(Stop.2.Status~Day+Hr.Day+Stop.1.Status,data=routea)
+stop2.prob<-data.frame(Day=c("M"),Hr.Day=10,Stop.1.Status=c("Delayed"))
+predict(stop2.fit,newdata = stop2.prob,"probs")
+stop3.fit<-multinom(Stop.3.Status~Day+Hr.Day+Stop.1.Status+Stop.2.Status,data=routea)
+stop3.prob<-data.frame(Day=c("M"),Hr.Day=10,Stop.1.Status=c("Delayed"),Stop.2.Status=c("On Time"))
+predict(stop3.fit,newdata = stop3.prob,"probs")
+stop4.fit<-multinom(Stop.4.Status~Day+Hr.Day+Stop.1.Status+Stop.2.Status+Stop.3.Status,data=routea)
+stop4.prob<-data.frame(Day=c("M"),Hr.Day=10,Stop.1.Status=c("Delayed"),Stop.2.Status=c("On Time"),Stop.3.Status=c("On Time"))
+predict(stop4.fit,newdata = stop4.prob,"probs")
+
+
