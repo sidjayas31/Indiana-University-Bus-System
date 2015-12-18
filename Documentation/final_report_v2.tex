@@ -336,15 +336,13 @@ The data from the MySql database was made longitudinal again and was exported as
 A logistic Regression model was built over this dataset to predict whether the thr A Route would be On-Time, or Delayed or Early.\\
 
 As described earlier, if the actual time is a minute or earlier than the schedule time, it is marked Early. If the bus arrives a minute before or after the scheduled time, then it is termed as On-Time. If the bus is delayed by more than a minute, it is termed as late.\\
-
-In essense,\\
+\\In essense,\\
 On time : Running as per the scheduled time with a tolerance of plus or minus one minute\\
 Early: Ahead by more than a minute to the scheduled time\\
 Late: delay of more than a minute to the scheduled time\\
 
 Thus, the logistic model would have 3 classes, On-Time, Early and Delayed.\\
-
-\textbf{Model 1} The model was built in such a way that the prediction in first stop would dependant on the time of the hour and the trip of the day.\\
+\\\textbf{Model 1} The model was built in such a way that the prediction in first stop would dependant on the time of the hour and the trip of the day.\\
 \textbf{Model 2} The second model was built in such a way that this would consider the status of arrival in the first stop, hour and the day of travel.\\
 \textbf{Iterative Models} The consecutive models for stops iteratively built on this process, all constant factors and the previous stop status
 \begin{knitrout}
