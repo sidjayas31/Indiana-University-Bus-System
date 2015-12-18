@@ -1,17 +1,18 @@
 \select@language {english}
-\contentsline {section}{\numberline {1}Introduction}{4}{section.1}
-\contentsline {section}{\numberline {2}Problem Description}{6}{section.2}
-\contentsline {section}{\numberline {3}Constraints}{6}{section.3}
-\contentsline {section}{\numberline {4}Data Management}{6}{section.4}
-\contentsline {subsection}{\numberline {4.1}Source Data Model}{6}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Intermediate Model}{8}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Final Data Model}{10}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Data Preparation}{11}{subsection.4.4}
-\contentsline {section}{\numberline {5}Exploratory Analysis}{13}{section.5}
-\contentsline {section}{\numberline {6}Reporting}{16}{section.6}
-\contentsline {section}{\numberline {7}Visualization}{18}{section.7}
-\contentsline {section}{\numberline {8}Statistical Model}{23}{section.8}
-\contentsline {section}{\numberline {9}Future Work}{23}{section.9}
-\contentsline {section}{\numberline {10}Concluding remarks}{23}{section.10}
-\contentsline {section}{\numberline {11}References}{23}{section.11}
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}
+\contentsline {section}{\numberline {2}Problem Description}{5}{section.2}
+\contentsline {section}{\numberline {3}Constraints}{5}{section.3}
+\contentsline {section}{\numberline {4}Data Management}{5}{section.4}
+\contentsline {subsection}{\numberline {4.1}Source Data Model}{5}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Base Data Model}{6}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Intermediate Model}{7}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Data Warehouse Model}{9}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Data Preparation}{10}{subsection.4.5}
+\contentsline {section}{\numberline {5}Exploratory Analysis}{12}{section.5}
+\contentsline {section}{\numberline {6}Reporting}{15}{section.6}
+\contentsline {section}{\numberline {7}Visualization}{17}{section.7}
+\contentsline {section}{\numberline {8}Statistical Model}{22}{section.8}
+\contentsline {section}{\numberline {9}Future Work}{22}{section.9}
+\contentsline {section}{\numberline {10}Concluding remarks}{22}{section.10}
+\contentsline {section}{\numberline {11}References}{22}{section.11}
 \contentsfinish 

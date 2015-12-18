@@ -181,23 +181,34 @@ All the codes, data extracts, models, templates related to the project are avail
 \section{Constraints}
 \section{Data Management}
 \subsection{Source Data Model}
-Text Explanation here\\
+The source data was available in Micorosft Access DB which was imported into MySQL database facilitate manipulation. The data model into which the data was imported is below:\\
 \includegraphics[scale=0.5]{resources/dbmap_access}\\[1cm] 
-Text Explanation here\\
+
+The tables that are prefixed \lq DBMAP\_\_\rq contain data from DoubleMap. This includes but not limited to schedules, work record (shifts and drivers), Time and Location for each trip for each route with bus that was run in that particular route. \\
 \includegraphics[scale=0.5]{resources/IU_access}\\[1cm] 
-\subsection{Intermediate Model}
-\includegraphics[scale=0.5]{resources/Inter_schedule}\\[1cm] 
-Text Explanation here\\
-\includegraphics[scale=0.5]{resources/Inter_runs}\\[1cm] 
-Text Explanation here\\
-\subsection{Final Data Model}
-Text Explanation here\\
+The tables that are prefixed \lq IU\_\_\rq contain data maintained by IU Bus System. This included schedules, trips and their overview such as inbound and outbound passenger count. The table prefixed \lq NOAA\_\_\rq was obtained from NOAA (http://www.ncdc.noaa.gov/cdo-web/search) for the 
+Spring Term 2015\\
+\subsection{Base Data Model}
+The base tables contain the schedule data from both IU and DBMAP but in the format required to calculate the variation of actual trip time from schedule time. \\
 \includegraphics[scale=0.5]{resources/Source_spring}\\[1cm] 
-\textbf{Data Warehouse Model} \\
+
+\subsection{Intermediate Model}
+Since one of the primary objective was to find how late/early do trips run the tables below are created to be populated with trip/schedule times (The method is explained in next section \lq Data Preparation \rq)\\
+\includegraphics[scale=0.5]{resources/Inter_schedule}\\[1cm] 
+The above tables are intermediate tables that are used in calculating \textbf{scheduled} start and end time of each trip\\
+\includegraphics[scale=0.5]{resources/Inter_runs}\\[1cm] 
+
+\subsection{Data Warehouse Model}
 The data model by far developed is an OLTP model, which is used for operational efficiency. Inorder to facilitate a better analytic needs, these abstract entities are to be converted to a dimension and fact model. However, instead of traditional OLAP model, we have considered that the dimension to be the schedule and run to be facts. They reside in the model as shown below.\\
 \includegraphics[scale=0.5]{resources/wh}\\[1cm] \\
-It can be seen that instead of a one-row per stop arroach, this data model now has all trip data in one row. The data model is designed in such a way that it can hold upto 30 stops and a select statement can be used to query the data from these tables and calculate variance.
+It can be seen that instead of a one-row per stop approach, this data model now has all trip data in one row. The data model is designed in such a way that it can hold upto 30 stops and a select statement can be used to query the data from these tables and calculate variance.
 \subsection{Data Preparation}
+This section details the process that was undertaken to convert the data obtained from IU and DBMAP into actionable format. The format of data that is considered actionable is the flattened table format noted in the Data Warehouse model section.
+The data preparation involved the following steps:
+\begin{enumerate}
+\item Generating a TripID for each trip
+\end{enumerate}
+
 As discussed above, the data is now available in OLTP tables with the trip id and stop order. Now asper the data model the data has to be flattened to the new structure.\\
 \includegraphics[scale=0.6]{resources/hierarchy}\\[1cm] 
 As shown in the above the transformation is made by repeated joins to the same table. For the schedule table,
@@ -211,6 +222,8 @@ Once the data to schedule is loaded, now the data to the actual run can be loade
 However, even with this, we would not be able to match the schedule and run. It might happen that for a given trip, the bus may not have stopped in stop 1, hence the whole trip would be lost. Hence we calculate an reconciliation key, $RECON_KEY$. It can be seen that these two keys need not be same and the new key can be used to join with the schedule table to calculate variance. \\
 \includegraphics[scale=0.6]{resources/wh3}\\[1cm] 
 The variance was just then the select away and is calculated directly.
+
+%\includegraphics[scale=0.6]{resources/hierarchy}\\[1cm] 
 
 \section{Exploratory Analysis}
 Any Start of Data Analytics involves understanding of the data. An initial Exploratory data analysis was made using R and ggplot2 library. For example the below graph indicates the average time between the pairs of stops for the 12 AM for Route A. It can be seen that the travelling time is very less during morning 12AM. \\
