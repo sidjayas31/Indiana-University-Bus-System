@@ -275,10 +275,74 @@ This also lets the user to select the hour of the day, month, day, route and see
 \includegraphics[scale=0.55]{resources/tableau3}\\[1cm] 
 In refreshing change, During the mornings, for most of the stops the bus reaches either early or on time.
 \section{Statistical Model}
+\textbf{Logistic Regression Model}
+
+The data from the MySql database was made longitudinal again and was exported as an CSV file. This file as sourced to the R.\\
+
+A logistic Regression model was built over this dataset to predict whether the thr A Route would be On-Time, or Delayed or Early.\\
+
+As described earlier, if the actual time is a minute or earlier than the schedule time, it is marked Early. If the bus arrives a minute before or after the scheduled time, then it is termed as On-Time. If the bus is delayed by more than a minute, it is termed as late.\\
+
+In essense,\\
+On time : one min before and after the scheduled time\\
+Early: Earlier than a minute to the scheduled time\\
+Late: Later than a minute to the scheduled time\\
+
+Thus, the logistic model would have 3 levels, On-Time, Early and Delayed.\\
+
+**Model 1** The model was built in such a way that the prediction in first stop would dependant on the tie of the hour and the trip of the day.\\
+**Model 2** The second model was built in such a way that this would consider the status of arrival in the first stop, hour and the day of travel.\\
+**Iterative Models** The consecutive models for stops iteratively built on this process, all constant factors and the previous stop status
+<<>>=
+setwd("C:\\Users\\Sarvo\\nefarious-octo-rutabaga\\R Models\\Data")
+library(nnet)
+routea<-read.csv("DATA.csv")
+# Stop 1 Model
+stop1.fit<-multinom(Stop.1.Status~Day+Hr.Day,data=routea)
+# Predict Stop 1 Status
+stop1.prob<-data.frame(Day=c("M"),Hr.Day=10)
+predict(stop1.fit,newdata = stop1.prob,"probs")
+#Stop 2 status
+stop2.fit<-multinom(Stop.2.Status~Day+Hr.Day+Stop.1.Status,data=routea)
+#Prediction for Stop 2 status
+stop2.prob<-data.frame(Day=c("M"),Hr.Day=10,Stop.1.Status=c("Delayed"))
+predict(stop2.fit,newdata = stop2.prob,"probs")
+#Stop 3 Status
+stop3.fit<-multinom(Stop.3.Status~Day+
+						Hr.Day+
+						Stop.1.Status+
+						Stop.2.Status,
+					data=routea)
+#Prediction for Stop 3
+stop3.prob<-data.frame(Day=c("M"),Hr.Day=10,
+					   Stop.1.Status=c("Delayed"),
+					   Stop.2.Status=c("On Time"))
+predict(stop3.fit,newdata = stop3.prob,"probs")
+# Stop 4 Model
+stop4.fit<-multinom(Stop.4.Status~Day+
+						Hr.Day+
+						Stop.1.Status+
+						Stop.2.Status+
+						Stop.3.Status,
+					data=routea)
+#Prediction
+stop4.prob<-data.frame(Day=c("M"),
+					   Hr.Day=10,
+					   Stop.1.Status=c("Delayed"),
+					   Stop.2.Status=c("On Time"),
+					   Stop.3.Status=c("On Time"))
+predict(stop4.fit,newdata = stop4.prob,"probs")
+
+@
+A keen observer can see that this prediction is as same as the results off Tableau Graphs. Even there, the pattern that was observed is that if the bus starts delayed, it comes on-time to Stop 2, and comes Delayed to Stop 3.\\
+
+Thus this model can give a cateogorical answers to queries about the existing status of the bus.\\
+
 \section{Concluding remarks}
 Throughout our exploratory analysis and modeling we were able to make observations that are consistent with reality (verified by logic as well as with actual data) as well as make certain predictions (using neo4j model for example). While the results are preliminary and simple in nature, the framework and methods of analysis can be easily extended. We consider this an important step, since ability to quicky analyze the data is critical in achieving the overall objectives
 \section{Future Work}
 
 \section{References}
-
+\bibliographystyle{unsrt} 
+	\bibliography{ref}
 \end{document}

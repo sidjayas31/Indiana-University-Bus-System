@@ -1,16 +1,15 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Problem Description}{}% 2
-\BOOKMARK [1][-]{section.3}{Constraints}{}% 3
-\BOOKMARK [1][-]{section.4}{Data Management}{}% 4
-\BOOKMARK [2][-]{subsection.4.1}{Source Data Model}{section.4}% 5
-\BOOKMARK [2][-]{subsection.4.2}{Base Data Model}{section.4}% 6
-\BOOKMARK [2][-]{subsection.4.3}{Intermediate Model}{section.4}% 7
-\BOOKMARK [2][-]{subsection.4.4}{Data Warehouse Model}{section.4}% 8
-\BOOKMARK [2][-]{subsection.4.5}{Data Preparation}{section.4}% 9
-\BOOKMARK [1][-]{section.5}{Exploratory Analysis}{}% 10
-\BOOKMARK [1][-]{section.6}{Reporting}{}% 11
-\BOOKMARK [1][-]{section.7}{Visualization}{}% 12
-\BOOKMARK [1][-]{section.8}{Statistical Model}{}% 13
+\BOOKMARK [1][-]{section.3}{Data Management}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Source Data Model}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Base Data Model}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Intermediate Model}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{Data Warehouse Model}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.5}{Data Preparation}{section.3}% 8
+\BOOKMARK [1][-]{section.4}{Exploratory Analysis}{}% 9
+\BOOKMARK [1][-]{section.5}{Reporting}{}% 10
+\BOOKMARK [1][-]{section.6}{Visualization}{}% 11
+\BOOKMARK [1][-]{section.7}{Statistical Model}{}% 12
+\BOOKMARK [1][-]{section.8}{Concluding remarks}{}% 13
 \BOOKMARK [1][-]{section.9}{Future Work}{}% 14
-\BOOKMARK [1][-]{section.10}{Concluding remarks}{}% 15
-\BOOKMARK [1][-]{section.11}{References}{}% 16
+\BOOKMARK [1][-]{section.10}{References}{}% 15

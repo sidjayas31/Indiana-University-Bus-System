@@ -1,4 +1,53 @@
-\documentclass[12pt]{article}
+\documentclass[12pt]{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath}
@@ -81,7 +130,7 @@
   }%
   \item\relax}
  {\endlist}
-
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
 \begin{titlepage}
@@ -275,10 +324,148 @@ This also lets the user to select the hour of the day, month, day, route and see
 \includegraphics[scale=0.55]{resources/tableau3}\\[1cm] 
 In refreshing change, During the mornings, for most of the stops the bus reaches either early or on time.
 \section{Statistical Model}
+\textbf{Logistic Regression Model}
+
+The data from the MySql database was made longitudinal again and was exported as an CSV file. This file as sourced to the R.\\
+
+A logistic Regression model was built over this dataset to predict whether the thr A Route would be On-Time, or Delayed or Early.\\
+
+As described earlier, if the actual time is a minute or earlier than the schedule time, it is marked Early. If the bus arrives a minute before or after the scheduled time, then it is termed as On-Time. If the bus is delayed by more than a minute, it is termed as late.\\
+
+In essense,\\
+On time : one min before and after the scheduled time\\
+Early: Earlier than a minute to the scheduled time\\
+Late: Later than a minute to the scheduled time\\
+
+Thus, the logistic model would have 3 levels, On-Time, Early and Delayed.\\
+
+**Model 1** The model was built in such a way that the prediction in first stop would dependant on the tie of the hour and the trip of the day.\\
+**Model 2** The second model was built in such a way that this would consider the status of arrival in the first stop, hour and the day of travel.\\
+**Iterative Models** The consecutive models for stops iteratively built on this process, all constant factors and the previous stop status
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{setwd}\hlstd{(}\hlstr{"C:\textbackslash{}\textbackslash{}Users\textbackslash{}\textbackslash{}Sarvo\textbackslash{}\textbackslash{}nefarious-octo-rutabaga\textbackslash{}\textbackslash{}R Models\textbackslash{}\textbackslash{}Data"}\hlstd{)}
+\hlkwd{library}\hlstd{(nnet)}
+\hlstd{routea}\hlkwb{<-}\hlkwd{read.csv}\hlstd{(}\hlstr{"DATA.csv"}\hlstd{)}
+\hlcom{# Stop 1 Model}
+\hlstd{stop1.fit}\hlkwb{<-}\hlkwd{multinom}\hlstd{(Stop.1.Status}\hlopt{~}\hlstd{Day}\hlopt{+}\hlstd{Hr.Day,}\hlkwc{data}\hlstd{=routea)}
+\end{alltt}
+\begin{verbatim}
+## # weights:  24 (15 variable)
+## initial  value 2614.551165 
+## iter  10 value 1136.297534
+## iter  20 value 1087.220212
+## final  value 1087.212606 
+## converged
+\end{verbatim}
+\begin{alltt}
+\hlcom{# Predict Stop 1 Status}
+\hlstd{stop1.prob}\hlkwb{<-}\hlkwd{data.frame}\hlstd{(}\hlkwc{Day}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"M"}\hlstd{),}\hlkwc{Hr.Day}\hlstd{=}\hlnum{10}\hlstd{)}
+\hlkwd{predict}\hlstd{(stop1.fit,}\hlkwc{newdata} \hlstd{= stop1.prob,}\hlstr{"probs"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Data Missing      Delayed        Early      On Time 
+##   0.03082123   0.77910313   0.07317609   0.11689955
+\end{verbatim}
+\begin{alltt}
+\hlcom{#Stop 2 status}
+\hlstd{stop2.fit}\hlkwb{<-}\hlkwd{multinom}\hlstd{(Stop.2.Status}\hlopt{~}\hlstd{Day}\hlopt{+}\hlstd{Hr.Day}\hlopt{+}\hlstd{Stop.1.Status,}\hlkwc{data}\hlstd{=routea)}
+\end{alltt}
+\begin{verbatim}
+## # weights:  36 (24 variable)
+## initial  value 2614.551165 
+## iter  10 value 2117.757741
+## iter  20 value 2011.097163
+## iter  30 value 1998.078206
+## iter  40 value 1997.885031
+## final  value 1997.884320 
+## converged
+\end{verbatim}
+\begin{alltt}
+\hlcom{#Prediction for Stop 2 status}
+\hlstd{stop2.prob}\hlkwb{<-}\hlkwd{data.frame}\hlstd{(}\hlkwc{Day}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"M"}\hlstd{),}\hlkwc{Hr.Day}\hlstd{=}\hlnum{10}\hlstd{,}\hlkwc{Stop.1.Status}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"Delayed"}\hlstd{))}
+\hlkwd{predict}\hlstd{(stop2.fit,}\hlkwc{newdata} \hlstd{= stop2.prob,}\hlstr{"probs"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Data Missing      Delayed        Early      On Time 
+##   0.01664346   0.14224930   0.36711064   0.47399660
+\end{verbatim}
+\begin{alltt}
+\hlcom{#Stop 3 Status}
+\hlstd{stop3.fit}\hlkwb{<-}\hlkwd{multinom}\hlstd{(Stop.3.Status}\hlopt{~}\hlstd{Day}\hlopt{+}
+                                                \hlstd{Hr.Day}\hlopt{+}
+                                                \hlstd{Stop.1.Status}\hlopt{+}
+                                                \hlstd{Stop.2.Status,}
+                                        \hlkwc{data}\hlstd{=routea)}
+\end{alltt}
+\begin{verbatim}
+## # weights:  48 (33 variable)
+## initial  value 2614.551165 
+## iter  10 value 861.842048
+## iter  20 value 708.720592
+## iter  30 value 685.807742
+## iter  40 value 684.351992
+## iter  50 value 684.315511
+## final  value 684.313809 
+## converged
+\end{verbatim}
+\begin{alltt}
+\hlcom{#Prediction for Stop 3}
+\hlstd{stop3.prob}\hlkwb{<-}\hlkwd{data.frame}\hlstd{(}\hlkwc{Day}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"M"}\hlstd{),}\hlkwc{Hr.Day}\hlstd{=}\hlnum{10}\hlstd{,}
+                                           \hlkwc{Stop.1.Status}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"Delayed"}\hlstd{),}
+                                           \hlkwc{Stop.2.Status}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"On Time"}\hlstd{))}
+\hlkwd{predict}\hlstd{(stop3.fit,}\hlkwc{newdata} \hlstd{= stop3.prob,}\hlstr{"probs"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Data Missing      Delayed        Early      On Time 
+## 3.381334e-03 7.365777e-11 7.682267e-01 2.283920e-01
+\end{verbatim}
+\begin{alltt}
+\hlcom{# Stop 4 Model}
+\hlstd{stop4.fit}\hlkwb{<-}\hlkwd{multinom}\hlstd{(Stop.4.Status}\hlopt{~}\hlstd{Day}\hlopt{+}
+                                                \hlstd{Hr.Day}\hlopt{+}
+                                                \hlstd{Stop.1.Status}\hlopt{+}
+                                                \hlstd{Stop.2.Status}\hlopt{+}
+                                                \hlstd{Stop.3.Status,}
+                                        \hlkwc{data}\hlstd{=routea)}
+\end{alltt}
+\begin{verbatim}
+## # weights:  60 (42 variable)
+## initial  value 2614.551165 
+## iter  10 value 1261.966796
+## iter  20 value 1136.788612
+## iter  30 value 1099.663056
+## iter  40 value 1096.691497
+## iter  50 value 1096.544668
+## iter  60 value 1096.531568
+## final  value 1096.531328 
+## converged
+\end{verbatim}
+\begin{alltt}
+\hlcom{#Prediction}
+\hlstd{stop4.prob}\hlkwb{<-}\hlkwd{data.frame}\hlstd{(}\hlkwc{Day}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"M"}\hlstd{),}
+                                           \hlkwc{Hr.Day}\hlstd{=}\hlnum{10}\hlstd{,}
+                                           \hlkwc{Stop.1.Status}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"Delayed"}\hlstd{),}
+                                           \hlkwc{Stop.2.Status}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"On Time"}\hlstd{),}
+                                           \hlkwc{Stop.3.Status}\hlstd{=}\hlkwd{c}\hlstd{(}\hlstr{"On Time"}\hlstd{))}
+\hlkwd{predict}\hlstd{(stop4.fit,}\hlkwc{newdata} \hlstd{= stop4.prob,}\hlstr{"probs"}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## Data Missing      Delayed        Early      On Time 
+## 2.966553e-18 9.588480e-01 8.424239e-12 4.115202e-02
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+A keen observer can see that this prediction is as same as the results off Tableau Graphs. Even there, the pattern that was observed is that if the bus starts delayed, it comes on-time to Stop 2, and comes Delayed to Stop 3.\\
+
+Thus this model can give a cateogorical answers to queries about the existing status of the bus.\\
+
 \section{Concluding remarks}
 Throughout our exploratory analysis and modeling we were able to make observations that are consistent with reality (verified by logic as well as with actual data) as well as make certain predictions (using neo4j model for example). While the results are preliminary and simple in nature, the framework and methods of analysis can be easily extended. We consider this an important step, since ability to quicky analyze the data is critical in achieving the overall objectives
 \section{Future Work}
 
 \section{References}
-
+\bibliographystyle{unsrt} 
+	\bibliography{ref}
 \end{document}
