@@ -193,8 +193,8 @@
 
 
 \begin{abstract}
-University Bus systems are widely used for shuttling students, faculty and patrons in and out of University campuses and still remains the easiest way to reach the University Campuses. Indiana University operates its bus system under the name IU Bus\cite{1} \\ \\
-The project that this paper reports on attempts to develop an uniform framework and processes for analyzing IU Bus data and thus along the process hopes to establish a general framework. Any such framework should be able to transform practical nuances into presentable data analytics. The areas focused in this paper consider various aspects of discussion with the key stake holders, developing glossary, developing metrics for measuring performance,data pipe lining, data visualization, Model creation and model verification.\\ \\
+University Bus systems are widely used for shuttling students, faculty and patrons in and out of University campus making it the easiest mode of transportation to move around the University. Indiana University operates its bus system under the name IU Bus\cite{1} \\ \\
+The project that this paper reports on attempts to develop an uniform framework and processes for analyzing IU Bus data and thus along the process hopes to establish a general framework. Any such framework should be able to transform practical nuances into presentable data analytics and also be scalable. The areas focused in this paper consider various aspects of discussion with the key stake holders, developing glossary, developing metrics for measuring performance,data pipe lining, data visualization, Model creation and model verification.\\ \\
 This project uses MySql as its preferred database for storing operational data, Neo4j graphical database for holding aggregated data, Tableau Public for visualizing the data and R for model creation and verification.
 \end{abstract}
 
@@ -204,10 +204,10 @@ This project uses MySql as its preferred database for storing operational data, 
 \clearpage
 
 \section{Introduction}
-University Bus systems are critical for shuttling students in and out of university campuses. These bus systems are not only used at Indiana University, but also at other university systems like University Transit Service,University of Virginia\cite{2}, The Bus, Boston University system \cite{3}. All these universities have similar kind of schedules for different terms like Spring, Fall and special trips during late nights. All these services have an live tracking system which records the bus statuses, Geo-locations of buses and their stops and is presented real-time to the users. We also consider Cintra, Neves as one of the approaches for performing prediction. We also consider Cintra, Neves as one of the approaches for prediction\cite{4}\\ \\
-IU Bus system has four routes A,B,E and X and has about 52 stops including the minor and major stops. These busses are scheduled about one bus in every 15 minutes for use of its passengers. IU Bus System commits itself to keep up the time as per the schedule\cite{5}, however as with any transportation system, the bus gains or looses speed during the course of the travel. \\ \\
+University Bus systems are critical for shuttling students in and out of university campuses. These bus systems are not only used at Indiana University, but also at other university systems like University Transit Service,University of Virginia\cite{2}, The Bus, Boston University system \cite{3} ,etc. All these universities have similar kind of schedules for different semesters like Spring, Fall and special trips during late nights. All these services have an live tracking system which records the bus statuses, Geo-locations of buses and their stops and is presented real-time to the users. We also consider Cintra, Neves as one of the approaches for prediction\cite{4}\\ \\
+IU Bus system has four routes A,B,E and X and has about 52 stops including the minor and major stops. These busses are scheduled about one bus in every 15 minutes for use of its passengers. IU Bus System commits itself to stick to the schedule\cite{5}, however as with any transportation system, the bus gains or looses speed during the course of the travel, thereby deviating form the actual schedule. \\ \\
 Thus, primary interest of this study is to understand the time difference between the schedule time and the actual time, $t_{schedule} - t_{actual}$. An model was created in Neo4j depicting the acutal bus system, and the ability of the graph database serves in the shortest paths problem and going from place A to place B. \\
-In addition to the above said studies, an statistical model was developed in R to predict the arrival status of the bus at a given stop. The statuses can be On-Time, Delayed and Early, an detailed explanation is given in the corresponding sections. Other than this, a reporting solution was developed in Tableau and is hosted on cloud at location given below. Here, detailed reporting of status of each trips for Spring 2015 for Route A is available. This includes whether the bus arrival status and the seconds by which the bus is early / on-time. \\
+In addition to the above said studies, an statistical model was developed in R to predict the arrival status of the bus at a given stop. The statuses can be On-Time, Delayed and Early, an detailed explanation is given in the corresponding sections. In addition to these, a reporting solution was developed in Tableau and is hosted on cloud at location given below. Here, detailed reporting of status of each trips for Spring 2015 for Route A is available. This includes the bus arrival status and the seconds by which the bus is early / on-time. \\
 
 Following are the locations of the project artifacts:
 \begin{enumerate}
@@ -221,7 +221,7 @@ All the codes, data extracts, models, templates related to the project are avail
 \section{Problem Description}
 The main objectives that were considered are
 \begin{enumerate}
-\item Find out how early/late each trip of each route has run in the past runs. 
+\item Find out how early/late each trip of each route was in the past. 
 \item Use the both GPS and schedule data at hand to try improve the performance and perception of the IU transportation system
 \end{enumerate}
 Our project uses a subset of data available to create a framework which can then be employed to perform a variety of activities. The data used
@@ -232,19 +232,19 @@ Our project uses a subset of data available to create a framework which can then
 
 \section{Data Management}
 \subsection{Source Data Model}
-The source data was available in Micorosft Access DB which was imported into MySQL database facilitate manipulation. The data model into which the data was imported is below:\\
+The source data which was made available in Micorosft Access DB was imported into MySQL database to facilitate manipulation. The data model into which the data was imported is shown below:\\
 \includegraphics[scale=0.5]{resources/dbmap_access}\\[1cm] 
 
-The tables that are prefixed \lq DBMAP\_\_\rq contain data from DoubleMap. This includes but not limited to schedules, work record (shifts and drivers), Time and Location for each trip for each route with bus that was run in that particular route. \\
+The tables that are prefixed \lq DBMAP\_\_\rq contain data from DoubleMap. This includes but not limited to schedules, work records (shifts and drivers), Time and Location for each trip for each route with bus that was run in that particular route. \\
 \includegraphics[scale=0.5]{resources/IU_access}\\[1cm] 
-The tables that are prefixed \lq IU\_\_\rq contain data maintained by IU Bus System. This included schedules, trips and their overview such as inbound and outbound passenger count. The table prefixed \lq NOAA\_\_\rq was obtained from NOAA\cite{6} for the 
+The tables that are prefixed \lq IU\_\_\rq contain data maintained by IU Bus System. This included schedules, trips and their overview such as inbound and outbound passenger count. The table prefixed \lq NOAA\_\_\rq contains weather data which was obtained from NOAA\cite{6} for the 
 Spring Term 2015\\
 \subsection{Base Data Model}
 The base tables contain the schedule data from both IU and DBMAP but in the format required to calculate the variation of actual trip time from schedule time. \\
 \includegraphics[scale=0.5]{resources/Source_spring}\\[1cm] 
 
 \subsection{Intermediate Model}
-Since one of the primary objective was to find how late/early do trips run the tables below are created to be populated with trip/schedule times (The method is explained in next section \lq Data Preparation \rq)\\
+Since one of the primary objective was to find how late/early each trip has run the tables below are created to be populated with trip/schedule times (The method is explained in next section \lq Data Preparation \rq)\\
 \includegraphics[scale=0.5]{resources/Inter_schedule}\\[1cm] 
 The above tables are intermediate tables that are used in calculating \textbf{scheduled} start and end time of each trip\\
 \includegraphics[scale=0.5]{resources/Inter_runs}\\[1cm] 
@@ -263,42 +263,42 @@ The data preparation involved the following steps:
 The above two steps are performed for both schedule data and actual trip data. Now TripId can be further used to compare scheduled and actual time.
 As discussed above, the data is now available in OLTP tables with the trip id and stop order. Now asper the data model the data has to be flattened to the new structure.\\
 \includegraphics[scale=0.6]{resources/hierarchy}\\[1cm] 
-As shown in the above the transformation is made by repeated joins to the same table. For the schedule table,
+As shown above the transformation is made by repeated joins to the same table. For the schedule table,
 \begin{verbatim}
 concat(DOW,concat('~',concat(trip_id,concat('~',Schedule_ID)))) 'integration_key' 
 \end{verbatim}
-is used as an integration key. This is nothing but the concatenation of day of week, trip id, and the route if concatenated to create an unique key for every trip. Thus the data is available on the schedule dimension as below,\\
+is used as an integration key. This is nothing but the concatenation of day of week, trip id, and the route to create an unique key for every trip. Thus the data is available on the schedule dimension as below,\\
 \includegraphics[scale=0.6]{resources/wt1}\\[1cm] 
-Once the data to schedule is loaded, now the data to the actual run can be loaded. However to this new table, the unique key is the concatenation of data and the other components as described above. \\
+Once the data of schedule is loaded, now the data of the actual runs can be loaded. However to this new table, the unique key is the concatenation of data and the other components as described above. \\
 \includegraphics[scale=0.6]{resources/wh2}\\[1cm] 
 However, even with this, we would not be able to match the schedule and run. It might happen that for a given trip, the bus may not have stopped in stop 1, hence the whole trip would be lost. Hence we calculate an reconciliation key, $RECON_KEY$. It can be seen that these two keys need not be same and the new key can be used to join with the schedule table to calculate variance. \\
 \includegraphics[scale=0.6]{resources/wh3}\\[1cm] 
-The variance was just then the select away and is calculated directly.
+Now the variance can be calculated directly with just a select query.
 
 %\includegraphics[scale=0.6]{resources/hierarchy}\\[1cm] 
 
 \section{Exploratory Analysis}
-Any Start of Data Analytics involves understanding of the data. An initial Exploratory data analysis was made using R and ggplot2 library. For example the below graph indicates the average time between the pairs of stops for the 12 AM for Route A. It can be seen that the travelling time is very less during morning 12AM. \\
+The start of  any Data Analytics involves understanding of the data. An initial Exploratory data analysis was made using R and ggplot2 library. For example the below graph indicates the average time between pairs of stops at 12 AM for Route A. It can be seen that the travelling time is very less during this time of the day. \\
 \includegraphics[scale=0.4]{resources/ggplot1}\\[1cm] 
 \includegraphics[scale=0.4]{resources/ggplot2}\\[1cm] 
-However, a change in trend happens during the "peak times". During evening 7, the average time traveling time increases drastically, for Eg, 10th and Wood Lawn to psychology takes less than a minute during morning, however during evenings, it double to about 2 minutes. The same trend can be seen at below plots. \\
+However, a change in trend happens during the "peak times". During evening 7, the average traveling time increases drastically, for Eg, 10th and Wood Lawn to psychology takes less than a minute during morning hours, however during evenings, it is doubled. The same trend can be observed in below plots. \\
 \includegraphics[scale=0.4]{resources/ggplot3}\\[1cm] 
-However things get different when we talk about the dwell time. The average dwell time was plotted for every single hour of the day, it is interesting to note that the maximum time the bus spends is in the originating stops! \\
+However things get different when we look into the dwell time. The average dwell time was plotted for every single hour of the day, it is interesting to note that the maximum time the bus spends is in the originating stops! \\
 \includegraphics[scale=0.4]{resources/ggplot4}\\[1cm] 
 Another interesting trend is that as the day progresses, dwell time increases in major stops. There is in fact spike in the major stops like IMU, Kirkwood and Indiana and Kelley's school of Business. \\
 \includegraphics[scale=0.4]{resources/ggplot5}\\[1cm] 
 All these graphs and more visualizations are available in the Github Repository, \url{https://github.com/sarvothaman/nefarious-octo-rutabaga/tree/master/EDA}
 \section{Reporting}
-The Main objective of this case study is to report how much the busses run in accordance to the schedule. ie, the time deviation $t_{schedule}-t_{acutal}$ is an important metric. Tableau reporting solution was used to report these findings. \\
+The Main objective of this case study is to report how consistent the busses run in accordance to the schedule. ie, the time deviation $t_{schedule}-t_{acutal}$ is an important metric. Tableau reporting solution was used to report these findings. \\
 Tableau provides an excellent platform for developing these reports. The variance reports are reports which gives the flexibility to select the month, data, route and trip and check the variance in each stops. This is available on cloud and can be accessed by anyone for free. Below is the screenshot of the application hosted.\\
 \includegraphics[scale=0.4]{resources/tableau4}\\[1cm] 
-For example, the above shown trip is the 3 trip of A1 on January 26th 2015. It can be seen that the departure from stadium A is at 11:13, however the bus departed at 11:14 bringing in an one minute delay. It is interesting that in 3rd and Jordan, the was about 3 minutes late, however it reached IMU one minute early. This suggests that there is still space for optimizing the schedule. Multiple trips can also be selected as shown below to access trip information.
+For example, the above shown trip is the 3rd trip of A1 on January 26th 2015. It can be seen that the departure from stadium A is at 11:13, however the bus departed at 11:14 bringing with a minute delay. It is interesting that at 3rd and Jordan, the bus was about 3 minutes late, however it reached IMU one minute early. This suggests that there is still space for optimizing the schedule. Multiple trips can also be selected as shown below to access trip information.
 \includegraphics[scale=0.4]{resources/tableau5}\\[1cm] 
 \textbf{Status Reports}\\
-Sometimes we are interested in seeing that only whether the bus has arrived on-time or early to the main stops. The below report is called the logistic report and is available on cloud. This gives the user the option to drill down a specific date, month, route then trip and displays the status.\\
+Sometimes we are interested in only seeing  whether the bus has arrived on-time or early to the main stops. The below report is called the logistic report and is available on cloud. This gives the user the option to drill down a specific date, month, route then trip and displays the status.\\
 \includegraphics[scale=0.5]{resources/tableau6}\\[1cm] 
 For example the Feburary 2nd, A4 route, 1st trip reached all its stop ahead time.\\
-Thus care has been taken during this case study that due importance is given to usability of the output artifacts and can be used by the business rather than the esoteric data miners.
+Thus care has been taken during this case study that due importance is given to usability of the output artifacts and can be used by the business people rather than just the esoteric data miners.
 \section{Visualization}
 Another aspect of the data is the ability to visualize the data to understand the route. Neo4j is used as the background data store for saving node data. pyMysql module was used to connect to mysql and py2neo was used to connect to the cloud instance.\\
 A python program was written to aggregate the data from MySql and load it to cloud Neo4j instance. Once the entire data is loaded, the graph looks as follows.\\
@@ -333,13 +333,13 @@ A logistic Regression model was built over this dataset to predict whether the t
 As described earlier, if the actual time is a minute or earlier than the schedule time, it is marked Early. If the bus arrives a minute before or after the scheduled time, then it is termed as On-Time. If the bus is delayed by more than a minute, it is termed as late.\\
 
 In essense,\\
-On time : one min before and after the scheduled time\\
-Early: Earlier than a minute to the scheduled time\\
-Late: Later than a minute to the scheduled time\\
+On time : Running as per the scheduled time with a tolerance of plus or minus one minute\\
+Early: Ahead by more than a minute to the scheduled time\\
+Late: delay of more than a minute to the scheduled time\\
 
-Thus, the logistic model would have 3 levels, On-Time, Early and Delayed.\\
+Thus, the logistic model would have 3 classes, On-Time, Early and Delayed.\\
 
-**Model 1** The model was built in such a way that the prediction in first stop would dependant on the tie of the hour and the trip of the day.\\
+**Model 1** The model was built in such a way that the prediction in first stop would dependant on the time of the hour and the trip of the day.\\
 **Model 2** The second model was built in such a way that this would consider the status of arrival in the first stop, hour and the day of travel.\\
 **Iterative Models** The consecutive models for stops iteratively built on this process, all constant factors and the previous stop status
 \begin{knitrout}
@@ -457,13 +457,14 @@ Thus, the logistic model would have 3 levels, On-Time, Early and Delayed.\\
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-A keen observer can see that this prediction is as same as the results off Tableau Graphs. Even there, the pattern that was observed is that if the bus starts delayed, it comes on-time to Stop 2, and comes Delayed to Stop 3.\\
+A keen observer can see that this prediction is in accordance to the results of Tableau Graphs. Even there, the pattern that was observed is that if the bus starts delayed, it comes on-time to Stop 2, and comes Delayed to Stop 3.\\
 
 Thus this model can give a cateogorical answers to queries about the existing status of the bus.\\
 
 \section{Concluding remarks}
-Throughout our exploratory analysis and modeling we were able to make observations that are consistent with reality (verified by logic as well as with actual data) as well as make certain predictions (using neo4j model for example). While the results are preliminary and simple in nature, the framework and methods of analysis can be easily extended. We consider this an important step, since ability to quicky analyze the data is critical in achieving the overall objectives
+Throughout our exploratory analysis and modeling we were able to make observations that are consistent with reality (verified by logic as well as with actual data) as well as make certain predictions (using neo4j model for example). While the results are preliminary and simple in nature, the framework and methods of analysis can be easily scaled to a greater magnitude. We consider this an important step, since ability to quicky analyze the data is critical in achieving the overall objectives
 \section{Future Work}
+As stated earlier these analysis and models were created on only a subset of the given data. We would like to scale this to the entire data at hand and perform  more interesting and intutive analysis and visualization of results. We also plan to implement a simulation model which would clearly show how and where the deviation from the planned schedule occurs. In this project we have implemented only a logistic regression model for predictions. We would like to implement a varaity of machine learing algorithms and analyse the performance of each model on this data. By doing so we can find the best algorithm for this predictions and use it as a reliable tool see the effects of future changes which might be done to the busschedule.   
 
 \section{References}
 \bibliographystyle{unsrt} 
