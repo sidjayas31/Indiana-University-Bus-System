@@ -11,6 +11,7 @@
 \usepackage{etoolbox}
 \usepackage{lmodern}
 \usepackage{hyperref}
+\usepackage{verbatimbox}
 
 % definition of some personal colors
 \definecolor{myred}{RGB}{125,17,12}
@@ -134,7 +135,7 @@
 %   LOGO SECTION
 %----------------------------------------------------------------------------------------
 
-\includegraphics[scale=0.5]{iu_logo}\\[1cm] 
+%\includegraphics[scale=0.5]{resoureces/iu_logo}\\[1cm] 
 %----------------------------------------------------------------------------------------
 
 \vfill 
@@ -154,9 +155,25 @@ This project uses MySql as its preferred database for storing operational data, 
 \clearpage
 
 \section{Introduction}
-University Bus systems are critical for shuttling students in and out of university campuses. These bus systems are not only used at Indiana University, but also at other universities like University Transit Service,University of Virginia \url{http://www.virginia.edu/parking/uts/}, The Bus, Boston University system \url{http://www.bu.edu/thebus/}. All these universities have similar kind of schedules for different terms like Spring, Fall and special trips during late nights, called $Night Owl$ in the IU System. All these services have an live tracking system which records the bus statuses, Geo-locations of buses and their stops and is presented real-time to the users.\\ \\
+University Bus systems are critical for shuttling students in and out of university campuses. These bus systems are not only used at Indiana University, but also at other university systems like University Transit Service,University of Virginia \url{http://www.virginia.edu/parking/uts/}, The Bus, Boston University system \url{http://www.bu.edu/thebus/}. All these universities have similar kind of schedules for different terms like Spring, Fall and special trips during late nights. All these services have an live tracking system which records the bus statuses, Geo-locations of buses and their stops and is presented real-time to the users.\\ \\
 IU Bus system has four routes A,B,E and X and has about 52 stops including the minor and major stops. These busses are scheduled about one bus in every 15 minutes for use of its passengers. IU Bus System commits itself to keep up the time as per the schedule at \url{http://www.iubus.indiana.edu/campus_bus/bus_schedule.html}, however as with any transportation system, the bus gains or looses speed during the course of the travel. \\ \\
-Thus, primary interest of this study if to understand the time difference between the schedule time and the actual time, $t_{schedule} - t_{actual}$. An model was created in Neo4j depicting the acutal bus system
+Thus, primary interest of this study is to understand the time difference between the schedule time and the actual time, $t_{schedule} - t_{actual}$. An model was created in Neo4j depicting the acutal bus system, and the ability of the graph database serves in the shortest paths problem and going from place A to place B. \\
+In addition to the above said studies, an statistical model was developed in R to predict the arrival status of the bus at a given stop. The statuses can be On-Time, Delayed and Early, an detailed explanation is given in the corresponding sections. Other than this, a reporting solution was developed in Tableau and is hosted on cloud at location given below. Here, detailed reporting of status of each trips for Spring 2015 for Route A is available. This includes whether the bus arrival status and the seconds by which the bus is early / on-time. \\
+
+Following are the locations of the project artifacts:\\
+\begin{enumerate}
+\item Database Schemas
+\begin{enumerate}
+\item Hostname : rdc04.uits.iu.edu
+\item Port : 3099
+\item Username : bususer
+\item Password : Password123
+\end{enumerate}
+\item Neo4j Cloud Database : \url{http://iubus.sb02.stations.graphenedb.com:24789/browser/}
+\item Tableau Public : \url{https://public.tableau.com/profile/ganesh.nagarajan#!/vizhome/RouteA/IUBus}
+\item GitHub Project URL : \url{https://github.com/sarvothaman/nefarious-octo-rutabaga}
+\end{enumerate}
+All the codes, data extracts, models, templates related to the project are available at the Github location specified above.
 
 \clearpage
 
@@ -176,42 +193,72 @@ Text Explanation here\\
 \subsection{Final Data Model}
 Text Explanation here\\
 \includegraphics[scale=0.5]{resources/Source_spring}\\[1cm] 
-Text Explanation here\\
-\includegraphics[scale=0.5]{resources/wh}\\[1cm] 
+\textbf{Data Warehouse Model} \\
+The data model by far developed is an OLTP model, which is used for operational efficiency. Inorder to facilitate a better analytic needs, these abstract entities are to be converted to a dimension and fact model. However, instead of traditional OLAP model, we have considered that the dimension to be the schedule and run to be facts. They reside in the model as shown below.\\
+\includegraphics[scale=0.5]{resources/wh}\\[1cm] \\
+It can be seen that instead of a one-row per stop arroach, this data model now has all trip data in one row. The data model is designed in such a way that it can hold upto 30 stops and a select statement can be used to query the data from these tables and calculate variance.
 \subsection{Data Preparation}
-Text Explanation here\\
-%\includegraphics[scale=0.6]{resources/hierarchy}\\[1cm] 
+As discussed above, the data is now available in OLTP tables with the trip id and stop order. Now asper the data model the data has to be flattened to the new structure.\\
+\includegraphics[scale=0.6]{resources/hierarchy}\\[1cm] 
+As shown in the above the transformation is made by repeated joins to the same table. For the schedule table,
+\begin{verbatim}
+concat(DOW,concat('~',concat(trip_id,concat('~',Schedule_ID)))) 'integration_key' 
+\end{verbatim}
+is used as an integration key. This is nothing but the concatenation of day of week, trip id, and the route if concatenated to create an unique key for every trip. Thus the data is available on the schedule dimension as below,\\
+\includegraphics[scale=0.6]{resources/wt1}\\[1cm] 
+Once the data to schedule is loaded, now the data to the actual run can be loaded. However to this new table, the unique key is the concatenation of data and the other components as described above. \\
+\includegraphics[scale=0.6]{resources/wh2}\\[1cm] 
+However, even with this, we would not be able to match the schedule and run. It might happen that for a given trip, the bus may not have stopped in stop 1, hence the whole trip would be lost. Hence we calculate an reconciliation key, $RECON_KEY$. It can be seen that these two keys need not be same and the new key can be used to join with the schedule table to calculate variance. \\
+\includegraphics[scale=0.6]{resources/wh3}\\[1cm] 
+The variance was just then the select away and is calculated directly.
+
 \section{Exploratory Analysis}
-Text Explanation here\\
-\includegraphics[scale=0.6]{resources/ggplot1}\\[1cm] 
-Text Explanation here\\
-\includegraphics[scale=0.6]{resources/ggplot2}\\[1cm] 
-Text Explanation here\\
-\includegraphics[scale=0.6]{resources/ggplot3}\\[1cm] 
-Text Explanation here\\
-\includegraphics[scale=0.6]{resources/ggplot4}\\[1cm] 
-Text Explanation here\\
-\includegraphics[scale=0.6]{resources/ggplot5}\\[1cm] 
+Any Start of Data Analytics involves understanding of the data. An initial Exploratory data analysis was made using R and ggplot2 library. For example the below graph indicates the average time between the pairs of stops for the 12 AM for Route A. It can be seen that the travelling time is very less during morning 12AM. \\
+\includegraphics[scale=0.4]{resources/ggplot1}\\[1cm] 
+\includegraphics[scale=0.4]{resources/ggplot2}\\[1cm] 
+However, a change in trend happens during the "peak times". During evening 7, the average time traveling time increases drastically, for Eg, 10th and Wood Lawn to psychology takes less than a minute during morning, however during evenings, it double to about 2 minutes. The same trend can be seen at below plots. \\
+\includegraphics[scale=0.4]{resources/ggplot3}\\[1cm] 
+However things get different when we talk about the dwell time. The average dwell time was plotted for every single hour of the day, it is interesting to note that the maximum time the bus spends is in the originating stops! \\
+\includegraphics[scale=0.4]{resources/ggplot4}\\[1cm] 
+Another interesting trend is that as the day progresses, dwell time increases in major stops. There is in fact spike in the major stops like IMU, Kirkwood and Indiana and Kelley's school of Business. \\
+\includegraphics[scale=0.4]{resources/ggplot5}\\[1cm] 
+All these graphs and more visualizations are available in the Github Repository, \url{https://github.com/sarvothaman/nefarious-octo-rutabaga/tree/master/EDA}
 \section{Reporting}
-Text Explanation here\\
+The Main objective of this case study is to report how much the busses run in accordance to the schedule. ie, the time deviation $t_{schedule}-t_{acutal}$ is an important metric. Tableau reporting solution was used to report these findings. \\
+Tableau provides an excellent platform for developing these reports. The variance reports are reports which gives the flexibility to select the month, data, route and trip and check the variance in each stops. This is available on cloud and can be accessed by anyone for free. Below is the screenshot of the application hosted.\\
 \includegraphics[scale=0.55]{resources/tableau4}\\[1cm] 
-Text Explanation here\\
+For example, the above shown trip is the 3 trip of A1 on January 26th 2015. It can be seen that the departure from stadium A is at 11:13, however the bus departed at 11:14 bringing in an one minute delay. It is interesting that in 3rd and Jordan, the was about 3 minutes late, however it reached IMU one minute early. This suggests that there is still space for optimizing the schedule. Multiple trips can also be selected as shown below to access trip information.
 \includegraphics[scale=0.55]{resources/tableau5}\\[1cm] 
-Text Explanation here\\
+\textbf{Status Reports}\\
+Sometimes we are interested in seeing that only whether the bus has arrived on-time or early to the main stops. The below report is called the logistic report and is available on cloud. This gives the user the option to drill down a specific date, month, route then trip and displays the status.\\
 \includegraphics[scale=0.55]{resources/tableau6}\\[1cm] 
+For example the Feburary 2nd, A4 route, 1st trip reached all its stop ahead time.\\
+Thus care has been taken during this case study that due importance is given to usability of the output artifacts and can be used by the business rather than the esoteric data miners.
 \section{Visualization}
-Text Explanation here\\
+Another aspect of the data is the ability to visualize the data to understand the route. Neo4j is used as the background data store for saving node data. pyMysql module was used to connect to mysql and py2neo was used to connect to the cloud instance.\\
+A python program was written to aggregate the data from MySql and load it to cloud Neo4j instance. Once the entire data is loaded, the graph looks as follows.\\
 \includegraphics[scale=1]{resources/neo4j1}\\[1cm] 
-Text Explanation here\\
+A close in screenshot is as follows. The data model is created in such a way that each stops are represented as nodes and each directed arrow is the route. These edges has a properties like travel time at any given hour of the day and the nodes contain average dwell time in that stop for a given day\\
 \includegraphics[scale=1]{resources/neo4j2}\\[1cm] 
-Text Explanation here\\
+Neo4j uses the language called Cypher instead of the SQL query. An example cypher query is as follows\\
+\begin{verbatim}
+MATCH p =(a:Stops { name: "Neal Marshall" })
+-[:A_Route_M_R *]-
+(b:Stops { name: "IMU" })
+RETURN p, length(p)
+\end{verbatim}
+The above cypher selects a path from Neal Marshall to IMU and follows the route A in the Monday to Thursday schedule.\\
 \includegraphics[scale=0.55]{resources/neo4j3}\\[1cm] 
-Text Explanation here\\
+It can be seen below that there are parameters like hour9 indicates the travelling time at 9th hour of the day. This was used to predict the delay/arrival time and most of the time it predicted the time accurate upto Plus or minus three minutes.\\ \\
+\textbf{Status Reporting} \\
+As seen in above reports, for effective decision making the counts of instances bus statuses over a period of time is important. The below plots help in such interpretation,
 \includegraphics[scale=0.55]{resources/tableau1}\\[1cm] 
-Text Explanation here\\
+Eg, the above graph gives the count of the instances of the statuses. Generally it can be seen that stadium is always delayed and wells library is always on time.\\
 \includegraphics[scale=0.55]{resources/tableau2}\\[1cm] 
-Text Explanation here\\
-\includegraphics[scale=0.55]{resources/tableau3}\\[1cm] \section{Statistical Model}
+This also lets the user to select the hour of the day, month, day, route and see how the delay status is affected.\\
+\includegraphics[scale=0.55]{resources/tableau3}\\[1cm] 
+In refreshing change, During the mornings, for most of the stops the bus reaches either early or on time.
+\section{Statistical Model}
 \section{Future Work}
 \section{Concluding remarks}
 \section{References}

@@ -1,12 +1,15 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Problem Description}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Presentation of case study}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Mathematical formulation}{section.2}% 4
-\BOOKMARK [1][-]{section.3}{Data Description}{}% 5
-\BOOKMARK [2][-]{subsection.3.1}{Existing model}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.2}{Proposed model}{section.3}% 7
-\BOOKMARK [1][-]{section.4}{Computational Implementation}{}% 8
-\BOOKMARK [1][-]{section.5}{Visualizations}{}% 9
-\BOOKMARK [1][-]{section.6}{Proposed Changes}{}% 10
-\BOOKMARK [1][-]{section.7}{Concluding remarks}{}% 11
-\BOOKMARK [1][-]{section.8}{References}{}% 12
+\BOOKMARK [1][-]{section.3}{Constraints}{}% 3
+\BOOKMARK [1][-]{section.4}{Data Management}{}% 4
+\BOOKMARK [2][-]{subsection.4.1}{Source Data Model}{section.4}% 5
+\BOOKMARK [2][-]{subsection.4.2}{Intermediate Model}{section.4}% 6
+\BOOKMARK [2][-]{subsection.4.3}{Final Data Model}{section.4}% 7
+\BOOKMARK [2][-]{subsection.4.4}{Data Preparation}{section.4}% 8
+\BOOKMARK [1][-]{section.5}{Exploratory Analysis}{}% 9
+\BOOKMARK [1][-]{section.6}{Reporting}{}% 10
+\BOOKMARK [1][-]{section.7}{Visualization}{}% 11
+\BOOKMARK [1][-]{section.8}{Statistical Model}{}% 12
+\BOOKMARK [1][-]{section.9}{Future Work}{}% 13
+\BOOKMARK [1][-]{section.10}{Concluding remarks}{}% 14
+\BOOKMARK [1][-]{section.11}{References}{}% 15

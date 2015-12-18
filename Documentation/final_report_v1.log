@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.9.3)  17 DEC 2015 11:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.9.3)  18 DEC 2015 01:04
 entering extended mode
 **final_report_v1.tex
 (final_report_v1.tex
@@ -647,22 +647,58 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip50
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\verbatimbox\verbatimbox.sty"
+Package: verbatimbox 2014/03/12 v3.13 Routines for placing verbatim text into b
+oxes, useful in places where the verbatim environment is inaccessible. Secondar
+ily, for adding vertical buffer around an object.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\verbatim.sty"
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks39
+\verbatim@line=\toks40
+\verbatim@in@stream=\read2
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\readarray\readarray.sty"
+Package: readarray 2013/05/09 v1.2 Routines for inputting array data and recall
+ing it on an element-by-element basis. Currently supports 2-D and 3-D array
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ifnextok\ifnextok.sty"
+Package: ifnextok 2011/06/27 v0.3 test next token (UL)
+)
+\c@@index=\count137
+\c@@plane=\count138
+\c@@row=\count139
+\c@@col=\count140
+\c@use@args=\count141
+\c@@record=\count142
+\c@arg@index=\count143
+\c@break@count=\count144
+)
+\savedverbbox=\box39
+\c@VerbboxLineNo=\count145
+\boxtopsep=\dimen172
+\boxbottomsep=\dimen173
+\ps@tempdima=\dimen174
+\ps@tempboxa=\box40
+\boxtop@sep=\skip51
+\boxbottom@sep=\skip52
+)
 (final_report_v1.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 84.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 85.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ucs\ucsencs.def"
@@ -670,20 +706,20 @@ File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count137
-\scratchdimen=\dimen172
-\scratchbox=\box39
-\nofMPsegments=\count138
-\nofMParguments=\count139
-\everyMPshowfont=\toks39
-\MPscratchCnt=\count140
-\MPscratchDim=\dimen173
-\MPnumerator=\count141
-\makeMPintoPDFobject=\count142
-\everyMPtoPDFconversion=\toks40
+\scratchcounter=\count146
+\scratchdimen=\dimen175
+\scratchbox=\box41
+\nofMPsegments=\count147
+\nofMParguments=\count148
+\everyMPshowfont=\toks41
+\MPscratchCnt=\count149
+\MPscratchDim=\dimen176
+\MPnumerator=\count150
+\makeMPintoPDFobject=\count151
+\everyMPtoPDFconversion=\toks42
 ) ABD: EveryShipout initializing macros
-\AtBeginShipoutBox=\box40
-Package hyperref Info: Link coloring OFF on input line 84.
+\AtBeginShipoutBox=\box42
+Package hyperref Info: Link coloring OFF on input line 85.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -691,67 +727,60 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count143
+\c@section@level=\count152
 )
-LaTeX Info: Redefining \ref on input line 84.
-LaTeX Info: Redefining \pageref on input line 84.
-LaTeX Info: Redefining \nameref on input line 84.
+LaTeX Info: Redefining \ref on input line 85.
+LaTeX Info: Redefining \pageref on input line 85.
+LaTeX Info: Redefining \nameref on input line 85.
 
 (final_report_v1.out) (final_report_v1.out)
 \@outlinefile=\write4
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 118.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 119.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 118
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 119
 .
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 118
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 119
 .
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 118.
+(Font)              <14.4> on input line 119.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 118.
+(Font)              <10> on input line 119.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 118.
-
-<iu_logo.jpg, id=54, 337.26pt x 138.5175pt>
-File: iu_logo.jpg Graphic file (type jpg)
- <use iu_logo.jpg>
-Package pdftex.def Info: iu_logo.jpg used on input line 137.
-(pdftex.def)             Requested size: 101.17877pt x 41.55556pt.
+(Font)              <7> on input line 119.
  [1
 
-{C:/Users/Ganesh/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./iu_logo.
-jpg>]
-LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 146
+{C:/Users/Ganesh/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 147
 .
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ot1lmtt.fd"
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 146.
+(Font)              <10.95> on input line 147.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 146.
+(Font)              <8> on input line 147.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 146.
+(Font)              <6> on input line 147.
 
-Underfull \hbox (badness 10000) in paragraph at lines 146--149
+Underfull \hbox (badness 10000) in paragraph at lines 147--150
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 146--149
+Underfull \hbox (badness 10000) in paragraph at lines 147--150
 
  []
 
@@ -759,9 +788,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.151 \clearpage
+l.152 \clearpage
                  [1]
-LaTeX Font Info:    Try loading font information for OT1+lmss on input line 153
+LaTeX Font Info:    Try loading font information for OT1+lmss on input line 154
 .
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ot1lmss.fd"
 File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -769,42 +798,342 @@ File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <12> on input line 2.
 LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <12> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 4.
-)
-\tf@toc=\write5
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 6.
  [2
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 157--160
+])
+\tf@toc=\write5
+ [3]
+Underfull \hbox (badness 10000) in paragraph at lines 158--162
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 157--160
+Underfull \hbox (badness 10000) in paragraph at lines 158--162
 
  []
 
-[3
 
-] [4
+Underfull \hbox (badness 10000) in paragraph at lines 158--162
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 163--164
+
+ []
+
+[4
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 175.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 175.
- (final_report_v1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 175.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 175.
+Overfull \hbox (47.12955pt too wide) in paragraph at lines 173--174
+[]\OT1/lmr/m/n/12 Tableau Pub-lic : []$\OT1/lmtt/m/n/12 https : / / public . ta
+bleau . com / profile / ganesh . nagarajan #$
+ []
+
+
+Overfull \hbox (88.61339pt too wide) in paragraph at lines 174--175
+[]\OT1/lmr/m/n/12 GitHub Project URL : []$\OT1/lmtt/m/n/12 https : / / github .
+ com / sarvothaman / nefarious-[]octo-[]rutabaga$[] 
+ []
+
+[5] <resources/dbmap_access.jpg, id=154, 836.12375pt x 587.19376pt>
+File: resources/dbmap_access.jpg Graphic file (type jpg)
+
+<use resources/dbmap_access.jpg>
+Package pdftex.def Info: resources/dbmap_access.jpg used on input line 185.
+(pdftex.def)             Requested size: 418.06085pt x 293.59616pt.
+
+<resources/IU_access.jpg, id=155, 890.32625pt x 555.07375pt>
+File: resources/IU_access.jpg Graphic file (type jpg)
+
+<use resources/IU_access.jpg>
+Package pdftex.def Info: resources/IU_access.jpg used on input line 187.
+(pdftex.def)             Requested size: 445.16203pt x 277.53618pt.
+
+Overfull \hbox (28.06085pt too wide) in paragraph at lines 184--188
+[] 
+ []
+
+
+Overfull \hbox (55.16203pt too wide) in paragraph at lines 184--188
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 184--188
+
+ []
+
+[6
+
+ <./resources/dbmap_access.jpg>]
+<resources/Inter_schedule.jpg, id=161, 744.7825pt x 576.1525pt>
+File: resources/Inter_schedule.jpg Graphic file (type jpg)
+
+<use resources/Inter_schedule.jpg>
+Package pdftex.def Info: resources/Inter_schedule.jpg used on input line 189.
+(pdftex.def)             Requested size: 372.39034pt x 288.07553pt.
+
+<resources/Inter_runs.jpg, id=162, 946.53625pt x 549.05125pt>
+File: resources/Inter_runs.jpg Graphic file (type jpg)
+
+<use resources/Inter_runs.jpg>
+Package pdftex.def Info: resources/Inter_runs.jpg used on input line 191.
+(pdftex.def)             Requested size: 473.26697pt x 274.52495pt.
+
+Overfull \hbox (83.26697pt too wide) in paragraph at lines 189--193
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 189--193
+
+ []
+
+[7 <./resources/IU_access.jpg>] [8 <./resources/Inter_schedule.jpg>]
+<resources/Source_spring.jpg, id=171, 796.9775pt x 573.14125pt>
+File: resources/Source_spring.jpg Graphic file (type jpg)
+
+<use resources/Source_spring.jpg>
+Package pdftex.def Info: resources/Source_spring.jpg used on input line 195.
+(pdftex.def)             Requested size: 398.48776pt x 286.56992pt.
+
+<resources/wh.jpg, id=172, 872.25874pt x 651.43375pt>
+File: resources/wh.jpg Graphic file (type jpg)
+ <use resources/wh.jpg>
+Package pdftex.def Info: resources/wh.jpg used on input line 198.
+(pdftex.def)             Requested size: 436.1283pt x 325.71606pt.
+
+Overfull \hbox (8.48776pt too wide) in paragraph at lines 194--200
+[] 
+ []
+
+
+Overfull \hbox (46.1283pt too wide) in paragraph at lines 194--200
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 194--200
+
+ []
+
+[9 <./resources/Inter_runs.jpg>] [10 <./resources/Source_spring.jpg>]
+<resources/hierarchy.png, id=181, 492.33937pt x 152.82094pt>
+File: resources/hierarchy.png Graphic file (type png)
+
+<use resources/hierarchy.png>
+Package pdftex.def Info: resources/hierarchy.png used on input line 202.
+(pdftex.def)             Requested size: 295.40588pt x 91.69325pt.
+ [11 <./resources/wh.jpg>]
+Overfull \hbox (110.17525pt too wide) in paragraph at lines 205--205
+[]\OT1/lmtt/m/n/12 concat(DOW,concat('~',concat(trip_id,concat('~',Schedule_ID)
+))) 'integration_key'[] 
+ []
+
+<resources/wt1.png, id=186, 730.22812pt x 125.71968pt>
+File: resources/wt1.png Graphic file (type png)
+ <use resources/wt1.png>
+Package pdftex.def Info: resources/wt1.png used on input line 208.
+(pdftex.def)             Requested size: 438.14024pt x 75.43237pt.
+
+<resources/wh2.png, id=187, 737.75626pt x 130.23656pt>
+File: resources/wh2.png Graphic file (type png)
+ <use resources/wh2.png>
+Package pdftex.def Info: resources/wh2.png used on input line 210.
+(pdftex.def)             Requested size: 442.65717pt x 78.14253pt.
+
+<resources/wh3.png, id=188, 380.92313pt x 137.01187pt>
+File: resources/wh3.png Graphic file (type png)
+ <use resources/wh3.png>
+Package pdftex.def Info: resources/wh3.png used on input line 212.
+(pdftex.def)             Requested size: 228.55562pt x 82.20775pt.
+
+Overfull \hbox (48.14024pt too wide) in paragraph at lines 207--214
+[] 
+ []
+
+
+Overfull \hbox (52.65717pt too wide) in paragraph at lines 207--214
+[] 
+ []
+
+[12 <./resources/hierarchy.png> <./resources/wt1.png> <./resources/wh2.png>]
+<resources/ggplot1.png, id=194, 692.5875pt x 469.00218pt>
+File: resources/ggplot1.png Graphic file (type png)
+
+<use resources/ggplot1.png>
+Package pdftex.def Info: resources/ggplot1.png used on input line 217.
+(pdftex.def)             Requested size: 277.03009pt x 187.59755pt.
+
+<resources/ggplot2.png, id=195, 688.82344pt x 466.74374pt>
+File: resources/ggplot2.png Graphic file (type png)
+
+<use resources/ggplot2.png>
+Package pdftex.def Info: resources/ggplot2.png used on input line 218.
+(pdftex.def)             Requested size: 275.52449pt x 186.69418pt.
+
+<resources/ggplot3.png, id=196, 688.82344pt x 464.4853pt>
+File: resources/ggplot3.png Graphic file (type png)
+
+<use resources/ggplot3.png>
+Package pdftex.def Info: resources/ggplot3.png used on input line 220.
+(pdftex.def)             Requested size: 275.52449pt x 185.79083pt.
+
+<resources/ggplot4.png, id=197, 703.12688pt x 479.54156pt>
+File: resources/ggplot4.png Graphic file (type png)
+
+<use resources/ggplot4.png>
+Package pdftex.def Info: resources/ggplot4.png used on input line 222.
+(pdftex.def)             Requested size: 281.24576pt x 191.81322pt.
+
+<resources/ggplot5.png, id=198, 691.83469pt x 478.78876pt>
+File: resources/ggplot5.png Graphic file (type png)
+
+<use resources/ggplot5.png>
+Package pdftex.def Info: resources/ggplot5.png used on input line 224.
+(pdftex.def)             Requested size: 276.72897pt x 191.5121pt.
+
+Overfull \hbox (7.87236pt too wide) in paragraph at lines 216--226
+\OT1/lmr/m/n/12 tory, []$\OT1/lmtt/m/n/12 https : / / github . com / sarvothama
+n / nefarious-[]octo-[]rutabaga / tree /$
+ []
+
+[13 <./resources/wh3.png> <./resources/ggplot1.png>] [14 <./resources/ggplot2.p
+ng> <./resources/ggplot3.png>]
+<resources/tableau4.png, id=208, 877.02657pt x 452.4403pt>
+File: resources/tableau4.png Graphic file (type png)
+
+<use resources/tableau4.png>
+Package pdftex.def Info: resources/tableau4.png used on input line 229.
+(pdftex.def)             Requested size: 482.3661pt x 248.84294pt.
+
+<resources/tableau5.png, id=209, 872.50969pt x 450.18187pt>
+File: resources/tableau5.png Graphic file (type png)
+
+<use resources/tableau5.png>
+Package pdftex.def Info: resources/tableau5.png used on input line 231.
+(pdftex.def)             Requested size: 479.88182pt x 247.60078pt.
+
+<resources/tableau6.png, id=210, 749.04843pt x 448.67625pt>
+File: resources/tableau6.png Graphic file (type png)
+
+<use resources/tableau6.png>
+Package pdftex.def Info: resources/tableau6.png used on input line 234.
+(pdftex.def)             Requested size: 411.9779pt x 246.77269pt.
+
+Overfull \hbox (92.3661pt too wide) in paragraph at lines 227--237
+[] 
+ []
+
+
+Overfull \hbox (89.88182pt too wide) in paragraph at lines 227--237
+[] 
+ []
+
+
+Overfull \hbox (21.9779pt too wide) in paragraph at lines 227--237
+[] 
+ []
+
+[15 <./resources/ggplot4.png> <./resources/ggplot5.png>] [16 <./resources/table
+au4.png>] [17 <./resources/tableau5.png>]
+<resources/neo4j1.png, id=224, 389.95688pt x 411.78844pt>
+File: resources/neo4j1.png Graphic file (type png)
+
+<use resources/neo4j1.png>
+Package pdftex.def Info: resources/neo4j1.png used on input line 240.
+(pdftex.def)             Requested size: 389.95592pt x 411.78741pt.
+
+<resources/neo4j2.png, id=225, 433.62pt x 379.4175pt>
+File: resources/neo4j2.png Graphic file (type png)
+
+<use resources/neo4j2.png>
+Package pdftex.def Info: resources/neo4j2.png used on input line 242.
+(pdftex.def)             Requested size: 433.61894pt x 379.41656pt.
+
+Overfull \hbox (43.61894pt too wide) in paragraph at lines 238--244
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 238--244
+
+ []
+
+[18 <./resources/tableau6.png>] [19 <./resources/neo4j1.png>]
+<resources/neo4j3.png, id=235, 794.2172pt x 414.79968pt>
+File: resources/neo4j3.png Graphic file (type png)
+
+<use resources/neo4j3.png>
+Package pdftex.def Info: resources/neo4j3.png used on input line 251.
+(pdftex.def)             Requested size: 436.8208pt x 228.14053pt.
+
+<resources/tableau1.png, id=236, 750.55406pt x 399.74344pt>
+File: resources/tableau1.png Graphic file (type png)
+
+<use resources/tableau1.png>
+Package pdftex.def Info: resources/tableau1.png used on input line 255.
+(pdftex.def)             Requested size: 412.80602pt x 219.85956pt.
+
+<resources/tableau2.png, id=237, 752.0597pt x 408.77719pt>
+File: resources/tableau2.png Graphic file (type png)
+
+<use resources/tableau2.png>
+Package pdftex.def Info: resources/tableau2.png used on input line 257.
+(pdftex.def)             Requested size: 413.63411pt x 224.82814pt.
+
+<resources/tableau3.png, id=238, 749.80125pt x 405.76593pt>
+File: resources/tableau3.png Graphic file (type png)
+
+<use resources/tableau3.png>
+Package pdftex.def Info: resources/tableau3.png used on input line 259.
+(pdftex.def)             Requested size: 412.39197pt x 223.17195pt.
+
+Overfull \hbox (46.8208pt too wide) in paragraph at lines 250--261
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 250--261
+
+ []
+
+
+Overfull \hbox (99.76834pt too wide) in paragraph at lines 250--261
+\OT1/lmr/m/n/12 in-ter-pre-ta-tion, [] 
+ []
+
+
+Overfull \hbox (23.63411pt too wide) in paragraph at lines 250--261
+[] 
+ []
+
+
+Overfull \hbox (22.39197pt too wide) in paragraph at lines 250--261
+[] 
+ []
+
+[20 <./resources/neo4j2.png>] [21 <./resources/neo4j3.png>] [22 <./resources/ta
+bleau1.png> <./resources/tableau2.png>] [23 <./resources/tableau3.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 265.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 265.
+
+(final_report_v1.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 265.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 265.
 Package rerunfilecheck Info: File `final_report_v1.out' has not changed.
-(rerunfilecheck)             Checksum: 4FFD8B5BE7752A724339ED540743E300;702.
+(rerunfilecheck)             Checksum: CA0D7DA4E4F808D49C37D77D9B468CF2;826.
  ) 
 Here is how much of TeX's memory you used:
- 17236 strings out of 493673
- 321589 string characters out of 3141528
- 401925 words of memory out of 3000000
- 20228 multiletter control sequences out of 15000+200000
- 79333 words of font info for 56 fonts, out of 3000000 for 9000
+ 17590 strings out of 493673
+ 327500 string characters out of 3141528
+ 407370 words of memory out of 3000000
+ 20514 multiletter control sequences out of 15000+200000
+ 82279 words of font info for 57 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 62i,5n,56p,800b,443s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 62i,5n,56p,800b,495s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Progr
 am Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files (x
 86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rmtt.enc}{C:/Program Files (x86)/MiKTeX 2.
@@ -822,9 +1151,9 @@ iles (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsso12.pfb><C:/Program Files (x86)
 /MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9
 /fonts/type1/public/lm/lmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
 1/public/lm/lmtt12.pfb>
-Output written on final_report_v1.pdf (5 pages, 312035 bytes).
+Output written on final_report_v1.pdf (24 pages, 2167445 bytes).
 PDF statistics:
- 174 PDF objects out of 1000 (max. 8388607)
- 18 named destinations out of 1000 (max. 500000)
- 114 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 317 PDF objects out of 1000 (max. 8388607)
+ 48 named destinations out of 1000 (max. 500000)
+ 253 words of extra memory for PDF output out of 10000 (max. 10000000)
 
