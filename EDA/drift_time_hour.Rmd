@@ -17,7 +17,7 @@ data$avg_time[data$avg_time>150]<-150
 lvl<-levels(data$hour_time)
 for(i in lvl){
   tmpDs<-data[which(data$hour_time==i),]
-  gg.plot<-ggplot(tmpDs,aes(x=from_name,y=avg_time,color=from_name,fill=from_name))+stat_summary(fun.y="mean",geom="bar")+theme(axis.text.x = element_text(angle = 90, hjust = 1),legend.position="none") + ggtitle(paste("Drift Time Patterns for the ",i,"th Hour of the Day"))+xlab("Stop Name")+ylab("Average Drift Time")
+  gg.plot<-ggplot(tmpDs,aes(x=from_name,y=avg_time,color=from_name,fill=from_name))+stat_summary(fun.y="mean",geom="bar")+theme(axis.text.x = element_text(angle = 90, hjust = 1),legend.position="none") + ggtitle(paste("Dwell Time Patterns for the ",i,"th Hour of the Day"))+xlab("Stop Name")+ylab("Average Dwell Time")
   print(gg.plot)
 }
 ```
